@@ -12,38 +12,6 @@ print("Nos van  a filtrar Sebastian")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 print("Estas son pruebas de commint en un mismos archivo")
 print("Estas lineas se haran merge")
 print("*"*200)
