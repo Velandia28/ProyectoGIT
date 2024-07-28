@@ -53,4 +53,7 @@ print("EMPIZA LA PRUEBA DE MERGE ")
 print("HOLA SEAN BIENVENIDOS A  CAMPUSLAND")
 print("HOY HABLAREMOS DE PYTHON")
 print("Empezaremos con aclarando que python es un lenguaje de programacion de Alto nivel ")
-    
+
+print("Esto significa que no necesitamos preocuparnos por la memoria y el procesamiento")
+print("Por favor no mas errores en los branches")
+print("-.-")
