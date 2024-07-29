@@ -1,34 +1,45 @@
-print("bienvenido al archivo de git")
-print("este es un archivo de texto")
-print("este es otro archivo de texto")
-print("Otra prueba de merge")
-print("prueba otra vezz 🤐")
+import os
+import json
+import pathlib
 
-print("esto es una neuva prueba 😤😤")
-print("otra vezz pythin")
-print("Nos van  a filtrar Sebastian")
-
-
-print("hola")
+def clear_screen():
+    if os.name == 'nt':  # 'nt' indica Windows
+        os.system('cls')
+    else:  # Unix/Linux/macOS tienen 'posix'
+        os.system('clear')
 
 
-print("Estas son pruebas de commint en un mismos archivo")
-print("Estas lineas se haran merge")
-print("*"*200)
-e=2
-i=10
-b=e*i
-print(b)
+def crear_leer_json(Archivo):
+    if not pathlib.Path(Archivo).exists():
+        with open(Archivo, 'w') as file:
+            json.dump({}, file, indent=4)
+            print(Archivo, "Se creo en la nube.")
+            print("~"*100) 
+    with open(Archivo, 'r') as file:
+        print(Archivo, "Saltó de la nube y se estrello aqui.")
+        print("~"*100) 
+        return json.load(file)
 
-print("EMPIZA LA PRUEBA DE MERGE ")
-print("HOLA SEAN BIENVENIDOS A  CAMPUSLAND")
-print("HOY HABLAREMOS DE PYTHON")
-print("Empezaremos con aclarando que python es un lenguaje de programacion de Alto nivel ")
 
-print("Esto significa que no necesitamos preocuparnos por la memoria y el procesamiento")
-print("Por favor no mas errores en los branches")
-print("-.-")
+def guardar_JSON (Diccionario,Archivo):
+    try:
+        with open(Archivo, 'w') as file:
+            json.dump(Diccionario, file, indent=4)
+            print("Datos guardados exitosamente!!")
+            print("~"*100) 
+    except Exception:
+        print("Error al guardar datos")
+        print("~"*100) 
 
-print("esto es una neuva prueba 😤😤")
-print("otra vezz pythin")
-print("Nos van  a filtrar Sebastian")
+
+
+
+
+
+
+
+
+
+
+
+        
