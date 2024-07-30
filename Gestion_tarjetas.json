@@ -1,0 +1,22 @@
+{
+    "1234567891234567": {
+        "tipo": "American Express",
+        "validez": "11/26",
+        "cvv": 111,
+        "1": {
+            "nombre": "jhoan",
+            "telefono": "1",
+            "sexo": "mujer"
+        }
+    },
+    "1234567891234566": {
+        "tipo": "MasterCard",
+        "validez": "11/26",
+        "cvv": 100,
+        "2": {
+            "nombre": "Velandia",
+            "telefono": "2",
+            "sexo": "Travesti"
+        }
+    }
+}
