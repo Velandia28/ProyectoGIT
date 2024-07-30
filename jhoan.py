@@ -23,7 +23,7 @@ def crear_tarjeta():
             Gestion= crear_leer_json(Archivo)
             while True:
                 tarjeta={}
-                id_tarjeta=str(input("Introduzca 16 digitos de la tarjeta nueva\n--> "))
+                id_tarjeta=str(input("Introduzca 16 digitos de la tarjeta nueva\n--> ")).strip()
                 if len(id_tarjeta) <16:
                     print("Error en los digitos de la tarjeta vuelva a empezar")
                     continue
@@ -54,10 +54,10 @@ def crear_tarjeta():
                     if cvv <100 or cvv >999:
                         print("Error en codigo de Verificacion\nVuelva empezar")
                         continue
-                    id_cliente=input("Introduzca la Identificacion del cliente\n--> ")
-                    nombre=input("Escriba el nombre completo del cliente\n-->")
-                    telefono=input("Escriba el telefono del cliente\n--> ")
-                    sexo=input("Escriba el sexo del cliente\n--> ")
+                    id_cliente=input("Introduzca la Identificacion del cliente\n--> ").strip()
+                    nombre=input("Escriba el nombre completo del cliente\n-->").strip()
+                    telefono=input("Escriba el telefono del cliente\n--> ").strip()
+                    sexo=input("Escriba el sexo del cliente\n--> ").strip()
                     tarjeta[id_tarjeta] = {
                         "tipo": tipo,
                         "validez": validez,
@@ -112,7 +112,7 @@ def crear_tarjeta():
 def modificar_tarjeta():
     while True:
         try:
-            # clear_screen()
+            clear_screen()
             Archivo="Gestion_tarjetas.json"
             Gestion= crear_leer_json(Archivo)
             print("~"*100)
@@ -126,7 +126,7 @@ def modificar_tarjeta():
                 print("~"*100)
                 return
             elif opc1==1:
-                id_tarjeta=input("¿Cual es el número de tarjeta?\n--> ")
+                id_tarjeta=input("¿Cual es el número de tarjeta?\n--> ").strip()
                 if Gestion.get(id_tarjeta,None)==None:
                     print("Error la tarjeta no existe")
                     continue
@@ -180,21 +180,9 @@ def modificar_tarjeta():
                             if cvv <100 or cvv >999:
                                 print("Error en codigo de Verificacion\nVuelva empezar")
                                 continue
-                            # tarjeta[id_tarjeta][id_cliente]=Gestion[id_tarjeta]
-                            # tarjeta[id_tarjeta] = {
-                            #     "tipo": tipo,
-                            #     "validez": validez,                                   ESTO DEBE SER CORREGIDO
-                            #     "cvv": cvv,
-                            #     id_cliente:{
-                            #         "nombre": nombre,
-                            #         "telefono": telefono,
-                            #         "sexo": sexo
-                            #     }
-                            # }
-
-                            print("~"*100)
-                            print("Estos son los datos a guardar")
-                            print(tarjeta)
+                            Gestion[id_tarjeta]["tipo"]=tipo
+                            Gestion[id_tarjeta]["validez"]=validez
+                            Gestion[id_tarjeta]["cvv"]=cvv
                             print("~"*100)
                             print ("¿Desea continuar y guardar?")
                             for i in desicion:
@@ -205,7 +193,6 @@ def modificar_tarjeta():
                                 print("~"*100)  
                                 continue
                             elif opc1==1: 
-                                Gestion.update(tarjeta)
                                 guardar_JSON(Gestion,Archivo)
                             else:
                                 print("Digite un valor correcto")
@@ -226,6 +213,58 @@ def modificar_tarjeta():
                         else:
                             print("Numero invalido")
                             continue
+                    elif opc==2:
+                        print("~"*100)
+                        id_cliente=input("¿Cual es la identificacion del cliente?\n--> ")
+                        if id_cliente in Gestion[id_tarjeta]:
+                            print(f"Numero de la tarjeta: {id_tarjeta}")
+                            for llave, valor in Gestion[id_tarjeta].items():
+                                print(f"{llave}: {valor}")
+                            print("~"*100)
+                            print("Se va a modificar la informacion del cliente, menos el numero de cliente\n¿Desea continuar?")
+                            for i in desicion:
+                                print(i)
+                            opc1=int(input("--> "))
+                            if opc1==2:
+                                print("Saliendo...")
+                                print("~"*100)
+                                return
+                            elif opc1==1:
+                                nombre=input("Escriba el nombre completo del cliente\n-->").strip()
+                                telefono=input("Escriba el telefono del cliente\n--> ").strip()
+                                sexo=input("Escriba el sexo del cliente\n--> ").strip()
+                                Gestion[id_tarjeta][id_cliente]["nombre"]=nombre
+                                Gestion[id_tarjeta][id_cliente]["telefono"]=telefono
+                                Gestion[id_tarjeta][id_cliente]["sexo"]=sexo
+                                print("~"*100)
+                            print ("¿Desea continuar y guardar?")
+                            for i in desicion:
+                                print(i)
+                            opc1=int(input("--> "))
+                            if opc1==2:
+                                print("Vuelva a empezar")  
+                                print("~"*100)  
+                                continue
+                            elif opc1==1: 
+                                guardar_JSON(Gestion,Archivo)
+                            else:
+                                print("Digite un valor correcto")
+                                continue 
+                            print("¿Desea modificar otra informacion?")
+                            for i in desicion:
+                                print(i)
+                            opc1=int(input("--> "))
+                            if opc1==2:
+                                print("Saliendo...")  
+                                print("~"*100) 
+                                return
+                            elif opc1==1:
+                                continue
+                            else:
+                                print("Digite un valor correcto")
+                                continue
+                        else:
+                            print("El cliente no existe")
                     else:
                         print("Numero invalido")
                         continue
