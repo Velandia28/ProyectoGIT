@@ -10,6 +10,8 @@ def clear_screen():
 
 
 def crear_leer_json(Archivo):
+    Archivo="Gestion_tarjetas.json"
+    # Gestion= crear_leer_json(Archivo)
     if not pathlib.Path(Archivo).exists():
         with open(Archivo, 'w') as file:
             json.dump({}, file, indent=4)
