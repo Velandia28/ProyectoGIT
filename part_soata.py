@@ -2,6 +2,7 @@ import os
 import json
 import pathlib
 from main import *
+
 menu_principal1 = ("1. TARJETAS ", "2. REPORTES", "3. SALIR")
 
 # def mostrar_menu(menu):
@@ -85,7 +86,7 @@ def menu_reportes1():
             opc = int(input("Ingrese el número del menú al que desea ingresar: "))
             if opc==1:
                 print("Vamos a mostrar las tarjetas del cliente ")
-                #Ver_tarjetas_cliente()
+                ver_tarjetas_cliente()
             elif opc==2:
                 print("Vamos a mostrar las tarjetas segun el numero de cada una de Ellas")
                 #ver_tarjetas_numero()
@@ -100,4 +101,39 @@ def menu_reportes1():
             continue 
         
         
+
+desicion=("1.Si","2.No")
+def ver_tarjetas_cliente():
+    while True:
+        try:
+            Archivo="Gestion_tarjetas.json"
+            Gestion= crear_leer_json(Archivo)
+            id_cliente=input("digite el id del cliente: ")
+            for tarjeta_id, tarjeta_info in Gestion.items():
+                if id_cliente in tarjeta_info:
+                    print(f"Tarjeta ID: {tarjeta_id}")
+                    print(f"Tipo: {tarjeta_info['tipo']}")
+                    print(f"Validez: {tarjeta_info['validez']}")
+                    print(f"CVV: {tarjeta_info['cvv']}")
+                    info_adicional = tarjeta_info[id_cliente]
+                    print(f"identificacion cliente  {id_cliente}")
+                    for key, value in info_adicional.items():
+                        print(f"  {key}: {value}")
+            print("desea continuar con la consulta por id")
+            for i in desicion:
+                print(i)
+            opc1=int(input("--> "))
+            if opc1==2:
+                print("Saliendo...")  
+                print("~"*100) 
+                return
+            elif opc1==1:
+                continue
+            else:
+                print("Digite un valor correcto")
+        except:
+            print("hubo un error al mostrar las tarjetas del cliente")
+            continue
+        
 menu_principal()
+ver_tarjetas_cliente()
